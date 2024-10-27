@@ -32,6 +32,10 @@ RUN apt-get update && \\
 VOLUME [ "/sys/fs/cgroup" ]
 STOPSIGNAL SIGRTMIN+3
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]
+
 
 EOF
         docker build -t "$image_name" -f Dockerfile.nexus .
