@@ -29,13 +29,6 @@ RUN apt-get update && \\
     apt-get clean && \\
     rm -rf /var/lib/apt/lists/*
 
-# Установка Rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \\
-    source /root/.cargo/env && \\
-    rustup update
-
-ENV PATH="/root/.cargo/bin:\${PATH}"
-
 VOLUME [ "/sys/fs/cgroup" ]
 STOPSIGNAL SIGRTMIN+3
 
@@ -133,6 +126,8 @@ install_new_container() {
       export HTTP_PROXY=\"http://$proxy_username:$proxy_password@$proxy_ip:$proxy_port\"
       export HTTPS_PROXY=\"http://$proxy_username:$proxy_password@$proxy_ip:$proxy_port\"
       "
+    docker exec "$node_name" sudo curl https://sh.rustup.rs -sSf | sh && source $HOME/.cargo/env && export PATH="$HOME/.cargo/bin:$PATH"
+    docker exec "$node_name" rustup update
 
 }
 
