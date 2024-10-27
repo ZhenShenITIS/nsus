@@ -126,8 +126,6 @@ install_new_container() {
       export HTTP_PROXY=\"http://$proxy_username:$proxy_password@$proxy_ip:$proxy_port\"
       export HTTPS_PROXY=\"http://$proxy_username:$proxy_password@$proxy_ip:$proxy_port\"
       "
-    docker exec "$node_name" sudo curl https://sh.rustup.rs -sSf | sh && source $HOME/.cargo/env && export PATH="$HOME/.cargo/bin:$PATH"
-    docker exec "$node_name" rustup update
 
 }
 
