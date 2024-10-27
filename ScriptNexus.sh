@@ -32,7 +32,7 @@ RUN apt-get update && \\
 VOLUME [ "/sys/fs/cgroup" ]
 STOPSIGNAL SIGRTMIN+3
 
-CMD ["/sbin/init"]
+
 EOF
         docker build -t "$image_name" -f Dockerfile.nexus .
         rm Dockerfile.nexus
